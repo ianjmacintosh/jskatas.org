@@ -5,6 +5,9 @@ import {loadKataBundles} from '../pagedata.js';
 
 const renderInBrowser = kataBundles => {
   const targetNode = document.getElementById('app');
+  // Clear SSR content before first render - lit-html doesn't recognize
+  // pre-rendered HTML and would append instead of replacing
+  targetNode.innerHTML = '';
   render(Page({kataBundles}), targetNode);
 };
 
