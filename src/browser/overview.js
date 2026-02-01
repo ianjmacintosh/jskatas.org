@@ -5,6 +5,9 @@ import {loadViaAjax as fetch} from './ajax.js';
 
 const renderInBrowser = katas => {
   const targetNode = document.getElementById('app');
+  // Clear SSR content before first render - lit-html doesn't recognize
+  // pre-rendered HTML and would append instead of replacing
+  targetNode.innerHTML = '';
 
   const showKataWithDetails = kata => {
     renderAgain({mixinInputData: {kataWithDetails: kata}});
